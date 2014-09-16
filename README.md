@@ -22,9 +22,9 @@ Both method return an Object array, each element in the array include :
   `weight` : the product of the fragment length and the fragment occurrence  
   
 You may set the qualification of the fragment when initialization.
-        var tree = new SuffixTrie({
-            minLength : 5, minOccurrence : 3
-        });
+    var tree = new SuffixTrie({
+        minLength : 5, minOccurrence : 3
+    });
 
 The default standard for fragment:
 `minLength` : 3
