@@ -13,8 +13,8 @@ Give the array as input parameter.
     var fragmentResult2 = tree.weightByMax();
 
 There are two method to get the fragments:
-- one is weightByAverage : which rank the fragment by the product of the fragment length and fragment occurrence.
-- one is weightByMax : the process is trival, but main idea is rank the longest fragment in the longest string to the first.
+- one is `weightByAverage()` : which rank the fragment by the product of the fragment length and fragment occurrence.
+- one is `weightByMax()` : the process is trival, but main idea is rank the longest fragment in the longest string to the first.
 
 Both method return an Object array, each element in the array include :  
   `source` : the index of the labels which contais this fragment,  
