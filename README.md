@@ -45,4 +45,4 @@ use Louis Chatriot's [binary search tree](https://github.com/louischatriot/node-
 
 ###License
 
-The MIT License
+The algorithm code is under The MIT License
