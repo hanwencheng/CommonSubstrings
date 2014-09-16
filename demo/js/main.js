@@ -1,6 +1,9 @@
 
 require.config({
-    baseUrl: "/visualization/js"
+    baseUrl: "/visualization/js",
+    paths : {
+        "jquery": "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min"
+    }
 });
 
 require(['SuffixTrieRelease', 'array', 'jquery', 'util','expandPanel'], function (SuffixTrie, array, $, util, list) {
