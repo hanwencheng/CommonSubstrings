@@ -41,7 +41,7 @@ the default values are:
 
 ###Extenal Librarys
 
-use Louis Chatriot's (binary search tree)[https://github.com/louischatriot/node-binary-search-tree] as dependecies
+use Louis Chatriot's [binary search tree](https://github.com/louischatriot/node-binary-search-tree) as dependecies
 
 ###License
 
