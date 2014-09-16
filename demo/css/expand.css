@@ -1,0 +1,60 @@
+#expand button{
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.expand-fragment{
+    /*border-radius: 5px;*/
+    /*border: 1px solid #7189A5;*/
+    margin: 10px;
+    font-size: 20px;
+    letter-spacing: .05em;
+    padding-left: 1em;
+    /*padding-right: 5px;*/
+    /*clear:both;*/
+    /*float:left;*/
+}
+
+#expand > input {
+    width: 50px;
+}
+
+
+.expand-fragment > span {
+    border-radius: 5px;
+    border: 1px solid #7189A5;
+    box-shadow: 2px 2px 3px #122F52;
+    padding : 0 5px;
+    cursor: pointer;
+}
+
+.expand-fragment > span:hover{  /* background color changed in util.makeColor method*/
+    box-shadow: 0 0 10px 10px #777777 inset;
+}
+
+.expand-fragment > .fragment-button-pressed {
+    box-shadow: 0 0 10px 10px #999999 inset;
+}
+
+.expand-label{
+    /*background-color: #4B688B;*/
+    /*clear:both;*/
+    /*float:left;*/
+    background-color: #ddd;
+    color: #4B688B;
+    /*border-top: 1px solid #fe9772;*/
+    border: 1px solid #7189A5;
+    letter-spacing: .05em;
+    box-shadow: 2px 2px 3px #122F52;
+    margin-bottom: 10px;
+    /*height: 50px;*/
+    /*width :300px;*/
+    /*margin: 0 auto;*/
+    /*padding-left: 1em;*/
+}
+
+    .expand-label:first-of-type{
+        margin-top: 10px;
+    }
