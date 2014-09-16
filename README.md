@@ -28,10 +28,11 @@ Both method return an Object array, each element in the array include :
 You may set the options of the algorithm when initialization.
 
     var tree = new SuffixTrie({
-        minLength : 5, minOccurrence : 3 , debug : false
+        minLength : 5, //the minimum length of fragment
+        minOccurrence : 3 , //the minimin occurrence of fragment
+        debug : false  //whether to show the console messages
     });
 
-The first two are standards for fragment, the debug decide whether to show console message.
 the default values are:
 `minLength` : 3
 `minOccurrence` : 2
