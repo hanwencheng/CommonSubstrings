@@ -18,9 +18,9 @@ There are two method to get the fragments:
 
 Both method return an Object array, each element in the array include :   
   {
-  source: the index of the labels which contais this fragment,
-  name : the name of the fragment,
-  weight : the product of the fragment length and the fragment occurrence
+  source: the index of the labels which contais this fragment,  
+  name : the name of the fragment,  
+  weight : the product of the fragment length and the fragment occurrence   
   }
 
 ###Extenal Librarys
