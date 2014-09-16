@@ -25,15 +25,17 @@ Both method return an Object array, each element in the array include :
 
 
 ####Conifguration  
-You may set the qualification of the fragment when initialization.
+You may set the options of the algorithm when initialization.
 
     var tree = new SuffixTrie({
-        minLength : 5, minOccurrence : 3
+        minLength : 5, minOccurrence : 3 , debug : false
     });
 
-The default standard for fragment:
+The first two are standards for fragment, the debug decide whether to show console message.
+the default values are:
 `minLength` : 3
 `minOccurrence` : 2
+`debug` : true
 
 
 ###Extenal Librarys
