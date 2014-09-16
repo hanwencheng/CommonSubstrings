@@ -27,8 +27,8 @@ You may set the qualification of the fragment when initialization.
         });
 
 The default standard for fragment:
--`minLength` : 3
--`minOccurrence` : 2
+`minLength` : 3
+`minOccurrence` : 2
 
 
 ###Extenal Librarys
