@@ -19,7 +19,16 @@ There are two method to get the fragments:
 Both method return an Object array, each element in the array include :  
   `source` : the index of the labels which contais this fragment,  
   `name` : the name of the fragment,  
-  `weight` : the product of the fragment length and the fragment occurrence   
+  `weight` : the product of the fragment length and the fragment occurrence  
+  
+You may set the qualification of the fragment when initialization.
+        var tree = new SuffixTrie({
+            minLength : 5, minOccurrence : 3
+        });
+
+The default standard for fragment:
+-`minLength` : 3
+-`minOccurrence` : 2
 
 
 ###Extenal Librarys
