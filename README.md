@@ -1,7 +1,7 @@
 CommonSubstrings
 ================
 
-####a method for finding all common strings for node.js
+####a method for finding all common strings for node.js, which is particularly quick for large string samples.
 ===
 ###Usage
 
@@ -40,6 +40,8 @@ the default values are:
 
 
 ###Extenal Librarys
+
+use Louis Chatriot's (binary search tree)[https://github.com/louischatriot/node-binary-search-tree] as dependecies
 
 ###License
 
