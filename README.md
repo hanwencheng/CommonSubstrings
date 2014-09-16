@@ -33,10 +33,10 @@ You may set the options of the algorithm when initialization.
         debug : false  //whether to show the console messages
     });
 
-the default values are:
-`minLength` : 3
-`minOccurrence` : 2
-`debug` : true
+the default values are:  
+- `minLength` : 3
+- `minOccurrence` : 2
+- `debug` : true
 
 
 ###Extenal Librarys
