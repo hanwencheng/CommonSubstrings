@@ -1,7 +1,7 @@
 CommonSubstrings
 ================
 
-####a method for finding all common strings for node.js, which is particularly quick for large string samples.
+####a method for finding all common strings for Javascript and node.js, which is particularly quick for large string samples.
 ===
 ###Usage
 
