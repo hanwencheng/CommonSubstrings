@@ -1,8 +1,8 @@
-CommonSubstrings
+common-substrings
 ================
 
 ####a method for finding all common strings for Javascript and node.js, which is particularly quick for large string samples.
-===
+=====
 ###Usage
 
 ####Quickstart
