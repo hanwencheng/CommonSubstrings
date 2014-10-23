@@ -1,0 +1,20 @@
+{
+    "name": "binary-search-tree",
+    "version": "0.2.4",
+    "author": {
+        "name": "Hanwen Cheng",
+        "email": "heawen.cheng@gmail.com"
+    },
+    "description": "a method for finding all common substrings, which is particularly quick for large string samples.",
+    "keywords": [
+        "common substring",
+        "longest substring"
+    ],
+    "homepage": "https://github.com/281494498/CommonSubstrings",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:281494498/CommonSubstrings.git"
+    },
+    "main": "index",
+    "licence": "MIT"
+}

@@ -1,6 +1,5 @@
 /**
  * Created by Hanwen on 01.07.2014.
- * as far there are no difference from the version 3.0
  */
 define(["bst"],function (BinarySearchTree) {
     /**

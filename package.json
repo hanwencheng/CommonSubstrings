@@ -1,0 +1,19 @@
+{
+  "name": "CommonSubstrings",
+  "version": "0.0.1",
+  "description": "a method for finding all common strings, which is particularly quick for large string samples.",
+  "keywords": [
+      "common substring",
+      "longest substring"
+  ],
+  "author": "Hanwen Cheng <heawen.cheng@gmail.com>",
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/281494498/CommonSubstrings.git" },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "main": "index"
+}
