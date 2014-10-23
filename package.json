@@ -15,5 +15,6 @@
     "mocha": "*",
     "should": "*"
   },
-  "main": "index"
+  "main": "index",
+  "licence": "MIT"
 }
