@@ -1,2 +1,1 @@
-
-module.exports = require('./lib/CommonSubstrings');
+module.exports.CommonSubstrings = require('./lib/CommonSubstrings');
