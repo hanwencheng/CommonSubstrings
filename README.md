@@ -8,7 +8,8 @@ common-substrings
 ####Quickstart
 Give the array as input parameter.
 
-    var tree = require('common-substrings');
+    var SuffixTrie = require('common-substrings');
+    var tree = new SuffixTrie();
     tree.build(array);
     var fragmentResult1 = tree.weightByAverage();
     var fragmentResult2 = tree.weightByMax();
@@ -30,13 +31,13 @@ You may set the options of the algorithm when initialization.
     var tree = new SuffixTrie({
         minLength : 5, //the minimum length of fragment
         minOccurrence : 3 , //the minimin occurrence of fragment
-        debug : false  //whether to show the console messages
+        debug : true//whether to show the console messages
     });
 
 the default values are:  
 - `minLength` : 3
 - `minOccurrence` : 2
-- `debug` : true
+- `debug` : false
 
 
 ###Extenal Librarys
