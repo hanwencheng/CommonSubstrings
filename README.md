@@ -41,6 +41,7 @@ the default values are:
 
 ####Example Result
 if we have the array `['java', 'javascript','pythonscript']`, by the default setting, we will get result array:
+
         [
           {name : 'java', source : [0,1], weight : 8},
           {name : 'script', source : [1,2], weight : 10}
