@@ -9,7 +9,8 @@ common-substrings
 ####Quickstart
 Give the array as input parameter.
 
-    var tree = require('common-substrings');
+    var SuffixTrie= require('common-substrings');
+    var tree =  new SuffixTrie();
     tree.build(array);
     var fragmentResult1 = tree.weightByAverage();
     var fragmentResult2 = tree.weightByMax();
