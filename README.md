@@ -2,7 +2,7 @@ common-substrings
 ================
 
 ####a method for finding all common strings for Javascript and node.js, which is particularly quick for large string samples.
-=====
+================
 
 ###Usage
 
@@ -51,7 +51,8 @@ if we have the array `['java', 'javascript','pythonscript']`, by the default set
 A practical demo is placed in demo folder, and I already download mongoose for windows here.
 You may use mongoose server to have a quick look on how to make the algorithm into practical. Don't forget to use console to see all the informations. 
 
-=====
+================
+
 If you have any questions, please contact my email: heawen.cheng@gmail.com, I will response as soon as possible :)
 
 ###Extenal Librarys
