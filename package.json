@@ -1,6 +1,6 @@
 {
   "name": "common-substrings",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "a method for finding all common strings, which is particularly quick for large string samples.",
   "keywords": [
       "common substrings",
