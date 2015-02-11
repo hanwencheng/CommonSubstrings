@@ -42,7 +42,7 @@ var tree = new SuffixTrie({
   the default values are:
   - `minLength` : 3
   - `minOccurrence` : 2
-  - `debug` : true
+  - `debug` : false
 
 ####Example Result
 If we have the array `['java', 'javascript','pythonscript']`, using the default settings, we will get result array:
