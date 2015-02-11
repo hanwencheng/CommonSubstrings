@@ -1,10 +1,8 @@
 # common-substrings
-================
 
 a method for finding all common strings for Javascript and node.js, which is particularly quick for large string samples.
-================
 
-### Usage
+## Usage
 
 #### Quickstart
 Build the tree, then pass an array of strings to `tree.build()`. Then ask for a list of weighted results.
@@ -58,14 +56,12 @@ If we have the array `['java', 'javascript','pythonscript']`, using the default 
 A practical demo is placed in demo folder, and I already download mongoose for windows here.
 You may use mongoose server to have a quick look on how to make the algorithm into practical. Don't forget to use console to see all the informations.
 
-================
-
 If you have any questions, please contact my email: heawen.cheng@gmail.com, I will response as soon as possible :)
 
-### External Libraries
+## External Libraries
 
-This uses Louis Chatriot's [binary search tree](https://github.com/louischatriot/node-binary-search-tree) as a dependency.
+This uses `Louis Chatriot`'s [binary search tree](https://github.com/louischatriot/node-binary-search-tree) as a dependency.
 
-### License
+## License
 
 The algorithm code is under The MIT License
