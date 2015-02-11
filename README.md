@@ -1,12 +1,12 @@
-common-substrings
+# common-substrings
 ================
 
-####a method for finding all common strings for Javascript and node.js, which is particularly quick for large string samples.
+a method for finding all common strings for Javascript and node.js, which is particularly quick for large string samples.
 ================
 
-###Usage
+### Usage
 
-####Quickstart
+#### Quickstart
 Build the tree, then pass an array of strings to `tree.build()`. Then ask for a list of weighted results.
 
 ```javascript
@@ -17,7 +17,7 @@ var fragmentResult1 = tree.weightByAverage();
 var fragmentResult2 = tree.weightByMax();
 ```
 
-####Methods
+#### Methods
 There are two methods to get the result fragments:
 - `weightByAverage()` : rank the fragments by the product of the fragment length and fragment occurrence.
 - `weightByMax()` : the process is trival, but main idea is to rank the longest fragment in the longest string to the first.
@@ -28,7 +28,7 @@ Both method return an Object array, each element in the array include :
 - `weight` : the product of the fragment length and the fragment occurrence
 
 
-####Configuration
+#### Configuration
 You may set the options of the algorithm when initialization.
 
 ```javascript
@@ -44,7 +44,7 @@ var tree = new SuffixTrie({
   - `minOccurrence` : 2
   - `debug` : false
 
-####Example Result
+#### Example Result
 If we have the array `['java', 'javascript','pythonscript']`, using the default settings, we will get result array:
 
 ```json
@@ -54,7 +54,7 @@ If we have the array `['java', 'javascript','pythonscript']`, using the default 
   ]
 ```
 
-####Demo
+#### Demo
 A practical demo is placed in demo folder, and I already download mongoose for windows here.
 You may use mongoose server to have a quick look on how to make the algorithm into practical. Don't forget to use console to see all the informations.
 
@@ -62,10 +62,10 @@ You may use mongoose server to have a quick look on how to make the algorithm in
 
 If you have any questions, please contact my email: heawen.cheng@gmail.com, I will response as soon as possible :)
 
-###External Libraries
+### External Libraries
 
 This uses Louis Chatriot's [binary search tree](https://github.com/louischatriot/node-binary-search-tree) as a dependency.
 
-###License
+### License
 
 The algorithm code is under The MIT License
