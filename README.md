@@ -5,42 +5,65 @@ a method for finding all common strings for Javascript and node.js, which is par
 ## Usage
 
 #### Quickstart
-Build the tree, then pass an array of strings to `tree.build()`. Then ask for a list of weighted results.
+
+
+The easiest way to start is:
 
 ```javascript
-var SuffixTrie= require('common-substrings');
-var tree =  new SuffixTrie();
-tree.build(array);
-var fragmentResult1 = tree.weightByAverage();
-var fragmentResult2 = tree.weightByMax();
+var substrings = require('common-substrings');
+var result = substrings.weigh(stringArray);
 ```
 
-#### Methods
-There are two methods to get the result fragments:
-- `weightByAverage()` : rank the fragments by the product of the fragment length and fragment occurrence.
-- `weightByMax()` : the process is trival, but main idea is to rank the longest fragment in the longest string to the first.
-
-Both method return an Object array, each element in the array include :
+Result is listed as an Object array, each element in the array include :
 - `source` : the index of the labels which contain this fragment,
 - `name` : the name of the fragment,
 - `weight` : the product of the fragment length and the fragment occurrence
 
-
 #### Configuration
-You may set the options of the algorithm when initialization.
+
+Following options is supported.
 
 ```javascript
-var tree = new SuffixTrie({
+var substrings = require('common-substrings');
+var result = substrings.weigh(stringArray , {
   minLength : 5, //the minimum length of fragment
   minOccurrence : 3 , //the minimin occurrence of fragment
   debug : false  //whether to show the console messages
+  limit : 10 //the number of element return, return all if 0 or false
+  byLength : false // weigh by max longest fragment in longest string first.
   });
 ```
 
-  the default values are:
-  - `minLength` : 3
-  - `minOccurrence` : 2
-  - `debug` : false
+the default values are:
+
+- `minLength` : 3
+- `minOccurrence` : 2
+- `debug` : false
+- `byLength` : false
+- `limit` : 0
+
+#### Optimizing Calculation
+
+For large string sample, a detail method could be used.
+ 
+First build the tree, then pass an array of strings to `tree.build()`, which is required only once. Then ask for results with different listing order.
+
+
+```javascript
+var SuffixTrie = require('common-substrings').trie;
+var tree =  new SuffixTrie();
+tree.build(stringArray);
+var fragmentResult1 = tree.weightByAverage();
+var fragmentResult2 = tree.weightByMax();
+```
+
+There are two methods for listing the result objects, which are the common substring fragments:
+- `weightByAverage()` : rank the fragments by the product of the fragment length and fragment occurrence.
+- `weightByMax()` : Rank the longest fragment in the longest string to the first.
+
+
+
+
 
 #### Example Result
 If we have the array `['java', 'javascript','pythonscript']`, using the default settings, we will get result array:

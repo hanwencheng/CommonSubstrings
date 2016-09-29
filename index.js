@@ -1,1 +1,15 @@
-module.exports = require('./lib/CommonSubstrings');
+var SuffixTrie= require('./lib/CommonSubstrings.min');
+
+function weigh (array, options){
+    var tree =  new SuffixTrie(options);
+    
+    tree.build(array);
+    
+    return tree.weigh();
+}
+
+module.exports = {
+    trie : SuffixTrie,
+    weigh : weigh
+};
+
