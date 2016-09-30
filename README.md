@@ -1,6 +1,7 @@
 # common-substrings
 
 [![npm version](https://badge.fury.io/js/common-substrings.svg)](https://badge.fury.io/js/common-substrings)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
 
 a method for finding all common strings for Javascript and node.js, which is particularly quick for large string samples.
 
