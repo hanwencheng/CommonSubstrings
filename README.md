@@ -1,3 +1,5 @@
+<a href="https://www.npmjs.com/package/common-substrings">npm</a>
+
 # common-substrings
 
 a method for finding all common strings for Javascript and node.js, which is particularly quick for large string samples.
