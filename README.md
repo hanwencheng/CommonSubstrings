@@ -22,6 +22,18 @@ Result is listed as an Object array, each element in the array include :
 - `name` : the name of the fragment,
 - `weight` : the product of the fragment length and the fragment occurrence
 
+
+#### Example Result
+If we have the array `['java', 'javascript','pythonscript']`, using the default settings, we will get result array:
+
+```json
+  [
+  {name : 'java', source : [0,1], weight : 8},
+  {name : 'script', source : [1,2], weight : 10}
+  ]
+```
+
+
 #### Configuration
 
 Following options is supported.
@@ -64,19 +76,6 @@ There are two methods for listing the result objects, which are the common subst
 - `weightByAverage()` : rank the fragments by the product of the fragment length and fragment occurrence.
 - `weightByMax()` : Rank the longest fragment in the longest string to the first.
 
-
-
-
-
-#### Example Result
-If we have the array `['java', 'javascript','pythonscript']`, using the default settings, we will get result array:
-
-```json
-  [
-  {name : 'java', source : [0,1], weight : 8},
-  {name : 'script', source : [1,2], weight : 10}
-  ]
-```
 
 #### Demo
 A practical demo is placed in demo folder, and I already download mongoose for windows here.
