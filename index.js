@@ -1,4 +1,4 @@
-var SuffixTrie= require('./lib/CommonSubstrings.min');
+var SuffixTrie= require('./lib/commonSubstrings.min');
 
 function weigh (array, options){
     var tree =  new SuffixTrie(options);
