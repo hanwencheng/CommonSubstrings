@@ -3,9 +3,19 @@
 [![npm version](https://badge.fury.io/js/common-substrings.svg)](https://badge.fury.io/js/common-substrings)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
 
-a method for finding all common strings for Javascript and node.js, which is particularly quick for large string samples.
+a method for finding all common strings for Javascript and node.js, particularly quick for large string samples.
+**It works in both web and node environment**.
+
+In version 2.0, the algorithms have been updated, now it uses a two dimension trie to get all the fragment.
+The vertical one is the standard suffix trie, but all the node of the last word in each suffix is linked,
+which I call them virtually horizontally linked.
+
+With new algorithms, previous bugs are fixed, speed is improved dramatically.
+The code is rewritten with ES6 module, easier to maintain.
+If you work with large samples, you may copy the source code instead of using npm packages to get the benefit of `var` optimization.
 
 ## Usage
+
 
 #### Quickstart
 
@@ -13,8 +23,11 @@ a method for finding all common strings for Javascript and node.js, which is par
 The easiest way to start is:
 
 ```javascript
-var substrings = require('common-substrings');
-var result = substrings.weigh(stringArray);
+import substrings from 'common-substrings';
+const result = substrings(stringArray, {
+  minOccurrence: 3,
+  minLength: 5,
+});
 ```
 
 Result is listed as an Object array, each element in the array include :
@@ -24,68 +37,29 @@ Result is listed as an Object array, each element in the array include :
 
 
 #### Example Result
-If we have the array `['java', 'javascript','pythonscript']`, using the default settings, we will get result array:
+If we have the array `['java', 'javascript','pythonscript']`, using the default options, we will get result array:
 
 ```json
   [
-  {name : 'java', source : [0,1], weight : 8},
-  {name : 'script', source : [1,2], weight : 10}
+    {name : 'java', source : [0,1], weight : 8},
+    {name : 'script', source : [1,2], weight : 10}
   ]
 ```
 
-
-#### Configuration
-
-Following options is supported.
-
-```javascript
-var substrings = require('common-substrings');
-var result = substrings.weigh(stringArray , {
-  minLength : 5, //the minimum length of fragment
-  minOccurrence : 3 , //the minimin occurrence of fragment
-  debug : false  //whether to show the console messages
-  limit : 10 //the number of element return, return all if 0 or false
-  byLength : false // weigh by max longest fragment in longest string first.
-  });
-```
-
-the default values are:
+the default options are:
 
 - `minLength` : 3
 - `minOccurrence` : 2
-- `debug` : false
-- `byLength` : false
-- `limit` : 0
 
-#### Optimizing Calculation
-
-For large string sample, a detail method could be used.
- 
-First build the tree, then pass an array of strings to `tree.build()`, which is required only once. Then ask for results with different listing order.
-
-
-```javascript
-var SuffixTrie = require('common-substrings').trie;
-var tree =  new SuffixTrie();
-tree.build(stringArray);
-var fragmentResult1 = tree.weightByAverage();
-var fragmentResult2 = tree.weightByMax();
-```
-
-There are two methods for listing the result objects, which are the common substring fragments:
-- `weightByAverage()` : rank the fragments by the product of the fragment length and fragment occurrence.
-- `weightByMax()` : Rank the longest fragment in the longest string to the first.
-
+#### Backward Compatibility
+Since there is some algorithms error in version 1.0, I do not offer support for it,
+anyway, for using it, the change is minor.
 
 #### Demo
+The demo works only with version 1, but it will still can be a good demo for the purpose of the library.
 A practical demo is placed in demo folder, and I already download mongoose for windows here.
-You may use mongoose server to have a quick look on how to make the algorithm into practical. Don't forget to use console to see all the informations.
 
 If you have any questions, please contact my email: heawen.cheng@gmail.com, I will response as soon as possible :)
-
-## External Libraries
-
-This uses `Louis Chatriot`'s [binary search tree](https://github.com/louischatriot/node-binary-search-tree) as a dependency.
 
 ## License
 

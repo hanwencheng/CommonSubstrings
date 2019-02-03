@@ -19,7 +19,7 @@ define(["bst"],function (BinarySearchTree) {
 
         this.minLENGTH = this.options.minLength === undefined ? 5 : options.minLength;
         this.minOccurrence = this.options.minOccurrence === undefined ? 5 : options.minOccurrence;
-
+        
         this.save = [];
         this.array = null;
         this.labelArray = null;
@@ -41,6 +41,7 @@ define(["bst"],function (BinarySearchTree) {
         this.fragmentTrie = {};
         this.rebuildArray;
     };
+
 
 //    ======================================================================================================================
 //    ==================================================== Public Functions ================================================
@@ -248,7 +249,7 @@ define(["bst"],function (BinarySearchTree) {
      * should use this function after the build and rebuild.
      * @param {Number} [variable] return the first several fragments if set.
      */
-    SuffixTrie.prototype.weightByAverage = function (variable) {
+    SuffixTrie.prototype.weighByAverage = function (variable) {
 
         var fragmentsArray = this.fragmentsArray;
         fragmentsArray.sort(function (f1, f2) {
@@ -264,7 +265,7 @@ define(["bst"],function (BinarySearchTree) {
      * weight the fragments and order them by max label length.
      * @param {Number} [variable] decide how many fragments should be list here. Default is all.
      */
-    SuffixTrie.prototype.weightByMax = function (variable) {
+    SuffixTrie.prototype.weighByMax = function (variable) {
 
         buildFragmentTrie(this.fragmentTrie, this.fragmentsArray);
 
