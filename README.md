@@ -39,17 +39,27 @@ Result is listed as an Object array, each element in the array include :
 #### Example Result
 If we have the array `['java', 'javascript','pythonscript']`, using the default options, we will get result array:
 
-```json
+```javascript
   [
     {name : 'java', source : [0,1], weight : 8},
     {name : 'script', source : [1,2], weight : 10}
   ]
 ```
 
-the default options are:
+The default options are:
 
 - `minLength` : 3
 - `minOccurrence` : 2
+
+Result is fetched from leaf to node of the trie, so it is not sorted, but it will be quite easy with lodash [sortBy](https://lodash.com/docs/4.17.11#sortBy) function , for example:
+```javascript
+    const resultSortByWeight = _.sortBy(result, ['weight']);
+    const resultSortByLength = _.sortBy(result, substring => substring.name.length);
+```
+
+#### Further improvement plans
+* Create Benchmark for large strings samples.
+* Use bitwise operator to unique and xor arrays instead of using `lodash`.
 
 #### Backward Compatibility
 Since there is some algorithms error in version 1.0, I do not offer support for it,
