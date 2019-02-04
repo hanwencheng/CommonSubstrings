@@ -4,7 +4,6 @@ examples
 *.sock
 .idea/
 .vscode/
-/lib/
 /node_modules/
 /backup/
 /demo/

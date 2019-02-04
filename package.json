@@ -1,6 +1,6 @@
 {
   "name": "common-substrings",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "description": "a method for finding all common strings, particularly quick for large string samples.",
   "keywords": [
     "common substrings",
@@ -26,9 +26,8 @@
     ]
   },
   "scripts": {
-    "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
     "prepare": "node_modules/babel-cli/bin/babel.js src --minified --no-comments --out-dir lib"
   },
-  "main": "./lib/commonSubstrings.min.js",
+  "main": "./lib/commonSubstrings.js",
   "licence": "MIT"
 }
