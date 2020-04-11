@@ -8,3 +8,7 @@ examples
 /backup/
 /demo/
 /archive/
+backup/
+.rts2_cache*
+*.iml
+yarn-error.log
