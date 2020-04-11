@@ -53,7 +53,7 @@ Result is fetched from leaf to node of the trie, so it is not sorted, but it wil
 
 Explanation [here](https://github.com/hanwencheng/gists/blob/master/find-all-common-substrings.md)
 
-## Implementation in Other Language
+## Implementation in Other Languages
 
 * [Rust](https://github.com/hanwencheng/common_substrings_rust)
 
