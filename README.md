@@ -4,7 +4,7 @@
 [![npm version](https://badge.fury.io/js/common-substrings.svg)](https://badge.fury.io/js/common-substrings)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
 
-a method for finding all common strings for Javascript and node.js, particularly quick for large string samples.
+A method written in Typescript, used for finding all common strings for Javascript and node.js, particularly quick for large string samples.
 **It works in both web and node environment and it has no dependencies**.
 
 ## Usage
@@ -53,7 +53,7 @@ Result is fetched from leaf to node of the trie, so it is not sorted, but it wil
 
 Explanation [here](https://github.com/hanwencheng/gists/blob/master/find-all-common-substrings.md)
 
-## Other implementation
+## Implementation in Other Language
 
 * [Rust](https://github.com/hanwencheng/common_substrings_rust)
 
