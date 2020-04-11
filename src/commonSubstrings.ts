@@ -31,7 +31,7 @@ function generateNewNode(label: string): Node {
 
 function buildTrie(array: string[], root: Node, horizontalRoot: Node, minLength: number): void {
 	array.forEach((word: string, originIndex: number) => {
-		let lastSuffixPointers: Node[] = [];
+		const lastSuffixPointers: Node[] = [];
 		for (let i = 0; i <= word.length - minLength; i++) {
 			let pointer = root;
 			const suffix = word.substring(i);
@@ -39,13 +39,13 @@ function buildTrie(array: string[], root: Node, horizontalRoot: Node, minLength:
 
 			chars.reduce((currentNode, char, charIndexInSuffix) => {
 				const currentBranchLength = charIndexInSuffix + 1;
-				const label = word.substring(i, currentBranchLength);
+				const label = word.substring(i, i + currentBranchLength);
 				if (currentNode.structure.has(char)) {
+					currentNode.structure.get(char)!.source.add(originIndex);
+				} else {
 					const newNode = generateNewNode(label);
 					newNode.source.add(originIndex);
 					currentNode.structure.set(char, newNode);
-				} else {
-					currentNode.structure.get(char)!.source.add(originIndex);
 				}
 
 				currentNode = currentNode.structure.get(char)!;
@@ -61,14 +61,13 @@ function buildTrie(array: string[], root: Node, horizontalRoot: Node, minLength:
 						lastSuffixPointers.push(currentNode)
 					} else {
 						// if it is the last min length suffix of the whole word, then add it to root
-						horizontalRoot.structure.set(label, currentNode);
+						horizontalRoot.horizontal.set(label, currentNode);
 					}
 				}
-
 				return currentNode;
 			}, pointer);
-			console.assert(lastSuffixPointers.length === 0, 'the last suffix list should be cleared');
 		}
+		console.assert(lastSuffixPointers.length === 0, 'the last suffix list should be cleared');
 	});
 }
 
@@ -115,11 +114,11 @@ function listing(node: Node, resultsSubstrings: Substring[]): void {
 	Array.from(node.structure.entries()).forEach(([label, childNode]) => {
 		listing(childNode, resultsSubstrings);
 
-		if (node.listing) {
+		if (childNode.listing) {
 			resultsSubstrings.push({
-				source: Array.from(node.source),
-				name: node.label,
-				weight: node.source.size * node.label.length
+				source: Array.from(childNode.source),
+				name: childNode.label,
+				weight: childNode.source.size * childNode.label.length
 			})
 		}
 	})
