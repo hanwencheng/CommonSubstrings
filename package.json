@@ -1,6 +1,6 @@
 {
   "name": "common-substrings",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "a method for finding all common strings, particularly quick for large string samples.",
   "keywords": [
     "common substrings",
@@ -12,19 +12,17 @@
     "url": "git://github.com/hanwencheng/CommonSubstrings.git"
   },
   "main": "lib/commonSubstrings.js",
-  "umd:main": "lib/commonSubstrings.umd.js",
-  "module": "lib/commonSubstrings.m.js",
   "source": "src/commonSubstrings.ts",
-  "types": "lib/commonSubstrings.d.ts",
+  "types": "lib/index.d.ts",
   "devDependencies": {
+    "benchmark": "^2.1.4",
     "jasmine": "^3.5.0",
-    "microbundle": "^0.11.0",
     "typescript": "3.8.3"
   },
   "scripts": {
-    "build": "microbundle",
-    "dev": "microbundle watch",
-    "test": "npx jasmine"
+    "build": "yarn tsc",
+    "test": "npx jasmine",
+    "bench": "node ./src/bench.js"
   },
   "licence": "MIT"
 }

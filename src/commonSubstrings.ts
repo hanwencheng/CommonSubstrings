@@ -5,7 +5,7 @@
  */
 import {Node, Substring} from './types';
 
-export default function getSubstrings(array: string[], {minLength, minOccurrence} = {
+function getSubstrings(array: string[], {minLength, minOccurrence} = {
 	minLength: 3,
 	minOccurrence: 2,
 }): Substring[] {
@@ -123,3 +123,5 @@ function listing(node: Node, resultsSubstrings: Substring[]): void {
 		}
 	})
 }
+
+module.exports = getSubstrings;
