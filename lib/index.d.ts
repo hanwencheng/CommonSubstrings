@@ -12,6 +12,6 @@ export declare type Substring = {
 };
 
 export default function getSubstrings (input: string[], options?: {
-	minLength?: 3,
-	minOccurrence?: 2,
+	minLength?: number,
+	minOccurrence?: number,
 }): Substring[];

@@ -12,4 +12,3 @@ export type Substring = {
 	weight: number
 }
 
-module.exports = Node;
