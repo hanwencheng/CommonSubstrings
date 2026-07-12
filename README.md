@@ -4,7 +4,7 @@
 [![npm version](https://badge.fury.io/js/common-substrings.svg)](https://badge.fury.io/js/common-substrings)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
 
-A method written in Typescript, used for finding all common strings for Javascript and node.js, particularly quick for large string samples.
+A method written in TypeScript, used for finding common substrings in JavaScript and Node.js, particularly quick for large string samples.
 **It works in both web and node environment and it has no dependencies**.
 
 ## Usage
@@ -20,6 +20,12 @@ const result = substrings(stringArray, {
   minOccurrence: 3,
   minLength: 5,
 });
+```
+
+CommonJS is also supported:
+
+```javascript
+const substrings = require('common-substrings');
 ```
 
 Result is listed as an Object array, each element in the array include :
@@ -43,11 +49,15 @@ The default options are:
 - `minLength` : 3
 - `minOccurrence` : 2
 
+Options can be supplied independently; omitted properties retain their default values.
+
 Result is fetched from leaf to node of the trie, so it is not sorted, but it will be quite easy with lodash [sortBy](https://lodash.com/docs/4.17.11#sortBy) function , for example:
 ```javascript
     const resultSortByWeight = _.sortBy(result, ['weight']);
     const resultSortByLength = _.sortBy(result, substring => substring.name.length);
 ```
+
+The algorithm works on characters, not word tokens, and prefers longer matches when overlapping matches consume the same source occurrences. If word boundaries matter, tokenize the input before calling this package.
 
 ## Algorithm
 
