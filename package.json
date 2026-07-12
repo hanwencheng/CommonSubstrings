@@ -9,20 +9,39 @@
   "author": "Hanwen Cheng <heawen.cheng@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hanwencheng/CommonSubstrings.git"
+    "url": "https://github.com/hanwencheng/CommonSubstrings.git"
   },
   "main": "lib/commonSubstrings.js",
   "source": "src/commonSubstrings.ts",
-  "types": "lib/index.d.ts",
+  "types": "lib/commonSubstrings.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/commonSubstrings.d.ts",
+      "import": "./lib/commonSubstrings.js",
+      "require": "./lib/commonSubstrings.js"
+    }
+  },
+  "files": [
+    "lib"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "sideEffects": false,
   "devDependencies": {
+    "@types/node": "^26.1.1",
     "benchmark": "^2.1.4",
-    "jasmine": "^3.5.0",
-    "typescript": "3.8.3"
+    "jasmine": "^6.3.0",
+    "typescript": "^7.0.2"
+  },
+  "overrides": {
+    "lodash": "^4.17.21"
   },
   "scripts": {
-    "build": "yarn tsc",
-    "test": "npx jasmine",
-    "bench": "node ./src/bench.js"
+    "build": "tsc",
+    "test": "npm run build && jasmine",
+    "bench": "npm run build && node ./src/bench.js",
+    "prepack": "npm test"
   },
-  "licence": "MIT"
+  "license": "MIT"
 }

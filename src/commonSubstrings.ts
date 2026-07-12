@@ -1,22 +1,35 @@
-/**
- * Created by Hanwen on 01.07.2014.
- * updated 2.0 by Hanwen on 03.02.2019.
- * updated 3.0 by Hanwen on 11.04.2020
- */
 import {Node, Substring} from './types';
 
-export default function getSubstrings(array: string[], {minLength, minOccurrence} = {
-	minLength: 3,
-	minOccurrence: 2,
-}): Substring[] {
+export type {Substring} from './types';
+
+export type CommonSubstringsOptions = {
+	minLength?: number;
+	minOccurrence?: number;
+};
+
+export default function getSubstrings(
+	strings: string[],
+	options: CommonSubstringsOptions = {},
+): Substring[] {
+	const {minLength = 3, minOccurrence = 2} = options;
+	validateThreshold('minLength', minLength);
+	validateThreshold('minOccurrence', minOccurrence);
+
 	const root = generateNewNode('');
 	const horizontalRoot = generateNewNode('');
-	buildTrie(array, root, horizontalRoot, minLength);
+	buildTrie(strings, root, horizontalRoot, minLength);
 	accumulateVertically(root, minLength, minOccurrence);
 	accumulateHorizontally(horizontalRoot, minOccurrence);
-	const resultArray: Substring[] = [];
-	listing(root, resultArray);
-	return resultArray;
+
+	const resultSubstrings: Substring[] = [];
+	listSubstrings(root, resultSubstrings);
+	return resultSubstrings;
+}
+
+function validateThreshold(optionName: string, optionValue: number): void {
+	if (!Number.isInteger(optionValue) || optionValue < 1) {
+		throw new RangeError(`${optionName} must be a positive integer`);
+	}
 }
 
 function generateNewNode(label: string): Node {
@@ -25,101 +38,131 @@ function generateNewNode(label: string): Node {
 		listing: false,
 		label,
 		horizontal: new Map<string, Node>(),
-		structure: new Map<string, Node>()
-	}
+		structure: new Map<string, Node>(),
+	};
 }
 
-function buildTrie(array: string[], root: Node, horizontalRoot: Node, minLength: number): void {
-	array.forEach((word: string, originIndex: number) => {
+function buildTrie(strings: string[], root: Node, horizontalRoot: Node, minLength: number): void {
+	strings.forEach((word, originIndex) => {
+		const wordCharacters = Array.from(word);
 		const lastSuffixPointers: Node[] = [];
-		for (let i = 0; i <= word.length - minLength; i++) {
-			let pointer = root;
-			const suffix = word.substring(i);
-			const chars = suffix.split('');
 
-			chars.reduce((currentNode, char, charIndexInSuffix) => {
-				const currentBranchLength = charIndexInSuffix + 1;
-				const label = word.substring(i, i + currentBranchLength);
-				if (currentNode.structure.has(char)) {
-					currentNode.structure.get(char)!.source.add(originIndex);
+		for (
+			let suffixStartIndex = 0;
+			suffixStartIndex <= wordCharacters.length - minLength;
+			suffixStartIndex++
+		) {
+			const suffixCharacters = wordCharacters.slice(suffixStartIndex);
+
+			suffixCharacters.reduce((currentNode, character, characterIndexInSuffix) => {
+				const currentBranchLength = characterIndexInSuffix + 1;
+				const label = wordCharacters
+					.slice(suffixStartIndex, suffixStartIndex + currentBranchLength)
+					.join('');
+				let nextNode = currentNode.structure.get(character);
+
+				if (nextNode) {
+					nextNode.source.add(originIndex);
 				} else {
-					const newNode = generateNewNode(label);
-					newNode.source.add(originIndex);
-					currentNode.structure.set(char, newNode);
+					nextNode = generateNewNode(label);
+					nextNode.source.add(originIndex);
+					currentNode.structure.set(character, nextNode);
 				}
 
-				currentNode = currentNode.structure.get(char)!;
-
 				if (currentBranchLength >= minLength) {
-					if (i > 0) {
-						const labelInLastSuffix = word.substring(i - 1, currentBranchLength + i);
+					if (suffixStartIndex > 0) {
+						const labelInLastSuffix = wordCharacters
+							.slice(suffixStartIndex - 1, suffixStartIndex + currentBranchLength)
+							.join('');
 						const lastPointer = lastSuffixPointers.shift();
-						currentNode.horizontal.set(labelInLastSuffix, lastPointer!);
+						if (!lastPointer) {
+							throw new Error('suffix trie invariant violated');
+						}
+						nextNode.horizontal.set(labelInLastSuffix, lastPointer);
 					}
 
 					if (currentBranchLength > minLength) {
-						lastSuffixPointers.push(currentNode)
+						lastSuffixPointers.push(nextNode);
 					} else {
-						// if it is the last min length suffix of the whole word, then add it to root
-						horizontalRoot.horizontal.set(label, currentNode);
+						horizontalRoot.horizontal.set(label, nextNode);
 					}
 				}
-				return currentNode;
-			}, pointer);
+
+				return nextNode;
+			}, root);
 		}
-		console.assert(lastSuffixPointers.length === 0, 'the last suffix list should be cleared');
+
+		if (lastSuffixPointers.length !== 0) {
+			throw new Error('suffix trie invariant violated');
+		}
 	});
 }
 
-function accumulateVertically(node: Node, minLength: number, minOccurrences: number): Set<number> {
-	let childrenListedOccurrences = Array.from(node.structure.entries()).reduce((acc: Set<number>, [label, node]) => {
-		const childSources = accumulateVertically(node, minLength, minOccurrences);
-		if (node.label.length <= minLength)
-			return acc;
+function accumulateVertically(
+	node: Node,
+	minLength: number,
+	minOccurrences: number,
+): Set<number> {
+	const childListedOccurrences = Array.from(node.structure.values()).reduce(
+		(accumulatedSources, childNode) => {
+			const childSources = accumulateVertically(childNode, minLength, minOccurrences);
+			if (Array.from(childNode.label).length <= minLength) {
+				return accumulatedSources;
+			}
 
-		return new Set([...acc, ...childSources]);
-	}, new Set<number>());
+			return new Set([...accumulatedSources, ...childSources]);
+		},
+		new Set<number>(),
+	);
 
-	if (node.label.length < minLength) {
-		return childrenListedOccurrences;
+	if (Array.from(node.label).length < minLength) {
+		return childListedOccurrences;
 	}
 
-	const remainedOccurrences = new Set(
-		[...node.source].filter(x => !childrenListedOccurrences.has(x)));
-	if (remainedOccurrences.size >= minOccurrences) {
+	const remainingOccurrences = new Set(
+		[...node.source].filter(sourceIndex => !childListedOccurrences.has(sourceIndex)),
+	);
+	if (remainingOccurrences.size >= minOccurrences) {
 		node.listing = true;
 		return node.source;
-	} else {
-		return childrenListedOccurrences;
 	}
+
+	return childListedOccurrences;
 }
 
 function accumulateHorizontally(node: Node, minOccurrences: number): Set<number> {
-	let childrenListedOccurrences = Array.from(node.horizontal.entries()).reduce((acc: Set<number>, [label, node]) => {
-		const childSources = accumulateHorizontally(node, minOccurrences);
-		return new Set([...acc, ...childSources]);
-	}, new Set<number>());
+	const childListedOccurrences = Array.from(node.horizontal.values()).reduce(
+		(accumulatedSources, childNode) => {
+			const childSources = accumulateHorizontally(childNode, minOccurrences);
+			return new Set([...accumulatedSources, ...childSources]);
+		},
+		new Set<number>(),
+	);
 
-	const remainedOccurrences = new Set(
-		[...node.source].filter(x => !childrenListedOccurrences.has(x)));
-	if (remainedOccurrences.size >= minOccurrences) {
+	const remainingOccurrences = new Set(
+		[...node.source].filter(sourceIndex => !childListedOccurrences.has(sourceIndex)),
+	);
+	if (remainingOccurrences.size >= minOccurrences) {
 		return node.source;
-	} else {
-		node.listing = false;
-		return childrenListedOccurrences;
+	}
+
+	node.listing = false;
+	return childListedOccurrences;
+}
+
+function listSubstrings(node: Node, resultSubstrings: Substring[]): void {
+	for (const childNode of node.structure.values()) {
+		listSubstrings(childNode, resultSubstrings);
+
+		if (childNode.listing) {
+			resultSubstrings.push({
+				source: Array.from(childNode.source),
+				name: childNode.label,
+				weight: childNode.source.size * Array.from(childNode.label).length,
+			});
+		}
 	}
 }
 
-function listing(node: Node, resultsSubstrings: Substring[]): void {
-	Array.from(node.structure.entries()).forEach(([label, childNode]) => {
-		listing(childNode, resultsSubstrings);
-
-		if (childNode.listing) {
-			resultsSubstrings.push({
-				source: Array.from(childNode.source),
-				name: childNode.label,
-				weight: childNode.source.size * childNode.label.length
-			})
-		}
-	})
-}
+module.exports = getSubstrings;
+module.exports.default = getSubstrings;
